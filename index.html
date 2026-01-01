@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddy Game's - Sports Community</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, 
+                rgba(20, 30, 48, 0.95) 0%, 
+                rgba(36, 59, 85, 0.95) 100%),
+                url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .glass-card {
+            max-width: 420px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.3), 
+                transparent);
+        }
+        
+        .logo-container {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 10px 20px rgba(0, 0, 0, 0.3),
+                0 0 0 2px rgba(255, 255, 255, 0.05),
+                inset 0 0 20px rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 15px 30px rgba(0, 0, 0, 0.4),
+                0 0 0 2px rgba(255, 215, 0, 0.3),
+                inset 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+        
+        .title {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 10px rgba(255, 215, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        
+        .description {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 35px;
+            padding: 0 10px;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #25D366, #1DA851);
+            color: white;
+            text-decoration: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 10px 25px rgba(37, 211, 102, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .whatsapp-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 15px 35px rgba(37, 211, 102, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.15);
+        }
+        
+        .whatsapp-btn:hover::before {
+            left: 100%;
+        }
+        
+        .whatsapp-icon {
+            font-size: 24px;
+            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        .footer-note {
+            margin-top: 30px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .highlight {
+            color: #FFD700;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 480px) {
+            .glass-card {
+                padding: 30px 20px;
+                border-radius: 20px;
+            }
+            
+            .title {
+                font-size: 28px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .whatsapp-btn {
+                padding: 16px 35px;
+                font-size: 16px;
+                width: 100%;
+            }
+            
+            .logo {
+                width: 90px;
+                height: 90px;
+            }
+        }
+        
+        /* Liquid glass effect */
+        .liquid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(
+                circle at 20% 30%,
+                rgba(255, 215, 0, 0.03) 0%,
+                transparent 50%
+            );
+            pointer-events: none;
+            z-index: 1;
+            border-radius: inherit;
+        }
+        
+        .glass-card > * {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-card">
+        <div class="liquid-overlay"></div>
+        
+        <div class="logo-container">
+            <img src="https://d1yei2z3i6k35z.cloudfront.net/13184094/6956e7c25190f_20251230_184432.jpg" 
+                 alt="Reddy Game's Logo" 
+                 class="logo">
+        </div>
+        
+        <h1 class="title">Reddy Game's</h1>
+        <p class="subtitle">Join Our Sports Community</p>
+        
+        <p class="description">
+            Connect with sports fans worldwide. Discuss matches, share insights, 
+            and enjoy friendly competition in our exclusive community.
+        </p>
+        
+        <a href="https://wa.me/447449706853?text=Hi%20Reddy%20Game's%20Team,%20I%20want%20to%20join%20the%20sports%20community%20and%20get%20my%20ID" 
+           class="whatsapp-btn pulse" 
+           target="_blank">
+            <span class="whatsapp-icon">💬</span>
+            Get Your ID via WhatsApp
+        </a>
+        
+        <div class="footer-note">
+            <p>⚠️ <span class="highlight">Sports discussion community only.</span> No real-money gambling or betting services are offered. For entertainment purposes.</p>
+        </div>
+    </div>
+
+    <script>
+        // Add click tracking
+        document.querySelector('.whatsapp-btn').addEventListener('click', function() {
+            // Add your analytics here if needed
+            console.log('WhatsApp button clicked');
+        });
+        
+        // Add subtle floating animation to logo
+        const logo = document.querySelector('.logo');
+        let floatDirection = 1;
+        
+        function floatLogo() {
+            const currentTransform = logo.style.transform || 'translateY(0px)';
+            const currentY = parseInt(currentTransform.match(/translateY\((-?\d+)px\)/)?.[1] || 0);
+            
+            if (currentY >= 5) floatDirection = -1;
+            if (currentY <= -5) floatDirection = 1;
+            
+            logo.style.transform = `translateY(${currentY + floatDirection * 0.5}px)`;
+            requestAnimationFrame(floatLogo);
+        }
+        
+        // Start animation after page loads
+        setTimeout(floatLogo, 1000);
+    </script>
+</body>
+</html>
